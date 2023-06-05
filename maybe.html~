@@ -1,0 +1,108 @@
+<html>
+ <head>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
+  <title>Phone Predictor</title>
+ </head>
+ <body>
+  <form>
+   <input type="button" onClick="runTF( )" value="Train and test" />
+   <input type="reset" />
+   The predicted display is <span id="answer">0.00</span> .
+   <div id="plot1"></div>
+   <div id="plot2"></div>
+  </form>
+
+  <script>
+   // Extracting the required data
+   function extractData( obj ) {
+    return { x:obj.Price, y:obj.Display };
+   }
+   function removeErrors( obj ) {
+    return ( ( obj.x != null ) && ( obj.y != null ) );
+   }
+
+   // Plotting the extracted data
+   function tfPlot( values, surface ) {
+    tfvis.render.scatterplot( surface,
+     { values:values, series:[ 'Original', 'Predicted' ] },
+     { xLabel:'Price', yLabel:'Display Size' } );
+   }
+
+   // Main function
+   async function runTF( ) {
+    const jsonData = await fetch( "phoneInfo.json" );
+    let values = await jsonData.json( );
+    values = values.map( extractData ).filter( removeErrors );
+
+    // Plotting the Data
+    const surface1 = document.getElementById( "plot1" );
+    const surface2 = document.getElementById( "plot2" );
+    tfPlot( values, surface1 );
+
+    // Converting the input to Tensors
+    const inputs = values.map( obj => obj.x );
+    const labels = values.map( obj => obj.y );
+    const inputTensor = tf.tensor2d( inputs, [inputs.length, 1] );
+    const labelTensor = tf.tensor2d( labels, [labels.length, 1] );
+    const inputMin = inputTensor.min( );
+    const inputMax = inputTensor.max( );
+    const labelMin = labelTensor.min( );
+    const labelMax = labelTensor.max( );
+    const nmInputs = inputTensor.sub(inputMin).div( inputMax.sub(inputMin) );
+    const nmLabels = labelTensor.sub(labelMin).div( labelMax.sub(labelMin) );
+
+    // Creating a Tensorflow model
+    const model = tf.sequential( );
+    model.add( tf.layers.dense( { inputShape:[1], units:1, useBias:true } ) );
+    model.add( tf.layers.dense( { units: 1, useBias: true } ) );
+    model.compile( { loss:'meanSquaredError', optimizer:'sgd' } );
+
+    // Starting training
+    await trainModel( model, nmInputs, nmLabels, surface2 );
+
+    // Un-normalizing the data
+    let unX = tf.linspace( 0, 1, 25 );
+    let unY = model.predict( unX.reshape( [25, 1] ) );
+    const unNormunX = unX
+     .mul( inputMax.sub( inputMin ) )
+     .add( inputMin );
+    const unNormunY = unY
+     .mul( labelMax.sub( labelMin ) )
+     .add( labelMin );
+    unX = unNormunX.dataSync( );
+    unY = unNormunY.dataSync( );
+
+    // Testing the model
+    const predicted = Array.from(unX).map( (val, i) => {
+     return { x: val, y: unY[i] }
+    } );
+    tfPlot( [values, predicted], surface1 );
+
+    // Finding the MPG of the input horsepower
+    var pr = parseInt( document.getElementById( "500" ).value );
+    unX.sort( ( a, b ) => a[0] - b[0] );
+    let x1 = unX[0];
+    for ( let i = 1; i < unX.length-1; i++ ) {
+     let x2 = unX[i];
+     if ( ( x1 <= 500 ) && ( 500 < x2 ) ) {
+      document.getElementById("answer").innerHTML = Math.round( unY[i-1] );
+      break;
+     }
+     x1 = x2;
+    }
+   }     // End of the main function runTF( )
+
+   // Asyncronous function to train the model
+   async function trainModel( model, inputs, labels, surface ) {
+    const batchSize = 25;
+    const epochs = 25;
+    const callbacks = tfvis.show.fitCallbacks(
+     surface, ['loss'], { callbacks:['onEpochEnd'] } );
+    return await model.fit( inputs, labels,
+     { batchSize, epochs, shuffle:true, callbacks:callbacks } );
+   }     // End of trainModel
+  </script>
+ </body>
+</html>
+

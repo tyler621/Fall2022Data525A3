@@ -1,0 +1,177 @@
+[
+        {
+	          "Display": "11.5",
+	          "Price": "1200",
+	          "condition": "new",
+	          "memory": "128",
+	          "resolution": "1440"
+	        },
+        {
+	          "Display": "11.5",
+	          "Price": "950",
+	          "condition": "good",
+	          "memory": "128",
+	          "resolution": "1440"
+	        },
+        {
+	          "Display": "10",
+	          "Price": "800",
+	          "condition": "new",
+	          "memory": "64",
+	          "resolution": "1440"
+	        },
+        {
+	          "Display": "6.6",
+	          "Price": "150",
+	          "condition": "good",
+	          "memory": "32",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "6.6",
+	          "Price": "250",
+	          "condition": "new",
+	          "memory": "32",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "8.5",
+	          "Price": "650",
+	          "condition": "excellent",
+	          "memory": "64",
+	          "resolution": "1080"
+	        },
+        {
+	          "Display": "11.2",
+	          "Price": "960",
+	          "condition": "very good",
+	          "memory": "128",
+	          "resolution": "1080"
+	        },
+        {
+	          "Display": "7.4",
+	          "Price": "500",
+	          "condition": "new",
+	          "memory": "128",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "8.4",
+	          "Price": "664",
+	          "condition": "very good",
+	          "memory": "64",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "4.5",
+	          "Price": "320",
+	          "condition": "good",
+	          "memory": "64",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "6.8",
+	          "Price": "450",
+	          "condition": "excellent",
+	          "memory": "64",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "7.5",
+	          "Price": "740",
+	          "condition": "new",
+	          "memory": "128",
+	          "resolution": "1080"
+	        },
+        {
+	          "Display": "9.5",
+	          "Price": "1000",
+	          "condition": "new",
+	          "memory": "128",
+	          "resolution": "1080"
+	        },
+        {
+	          "Display": "6.5",
+	          "Price": "230",
+	          "condition": "very good",
+	          "memory": "32",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "6.5",
+	          "Price": "300",
+	          "condition": "new",
+	          "memory": "32",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "5.4",
+	          "Price": "150",
+	          "condition": "excellent",
+	          "memory": "32",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "6.4",
+	          "Price": "550",
+	          "condition": "new",
+	          "memory": "64",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "7",
+	          "Price": "500",
+	          "condition": "very good",
+	          "memory": "64",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "6.5",
+	          "Price": "600",
+	          "condition": "new",
+	          "memory": "64",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "7.8",
+	          "Price": "750",
+	          "condition": "excellent",
+	          "memory": "128",
+	          "resolution": "1080"
+	        },
+        {
+	          "Display": "9",
+	          "Price": "750",
+	          "condition": "new",
+	          "memory": "64",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "7.4",
+	          "Price": "675",
+	          "condition": "very good",
+	          "memory": "64",
+	          "resolution": "1080"
+	        },
+        {
+	          "Display": "7",
+	          "Price": "590",
+	          "condition": "good",
+	          "memory": "64",
+	          "resolution": "1080"
+	        },
+        {
+	          "Display": "7.6",
+	          "Price": "540",
+	          "condition": "very good",
+	          "memory": "64",
+	          "resolution": "720"
+	        },
+        {
+	          "Display": "6.5",
+	          "Price": "500",
+	          "condition": "excellent",
+	          "memory": "128",
+	          "resolution": "720"
+	        }
+    ]
